@@ -1,0 +1,30 @@
+{
+  "name": "holochain-open-dev.github.io",
+  "version": "0.0.1",
+  "description": "Documentation for holochain-open-dev modules",
+  "main": "index.js",
+  "scripts": {
+    "start": "rocket start",
+    "docs": "rocket build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/holochain-open-dev/holochain-open-dev.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/holochain-open-dev/holochain-open-dev.github.io/issues"
+  },
+  "homepage": "https://github.com/holochain-open-dev/holochain-open-dev.github.io#readme",
+  "devDependencies": {
+    "@rocket/cli": "^0.10.1",
+    "@rocket/launch": "^0.6.0",
+    "@rollup/plugin-replace": "^3.0.1"
+  },
+  "type": "module",
+  "dependencies": {
+    "graphviz-webcomponent": "^0.4.2",
+    "wc-mermaid": "^1.0.1"
+  }
+}
