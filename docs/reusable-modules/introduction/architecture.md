@@ -1,5 +1,7 @@
 # Introduction >> Architecture ||20
 
+In a general sense, this is what the architecture of each of the modules looks like:
+
 ```js script
 import "@mdjs/mdjs-story/define";
 import "@mdjs/mdjs-preview/define";
@@ -31,3 +33,6 @@ import { html } from "@mdjs/mdjs-story";
   end
 </wc-mermaid>
 ```
+
+
+In the following sections there are detailed explanations about each of the components of the architecture, their technology stack and how to use them.

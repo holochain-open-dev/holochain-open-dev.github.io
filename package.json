@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "rocket start",
-    "docs": "rocket build"
+    "docs": "rocket build && gh-pages -d ./_site -b gh-pages --dotfiles"
   },
   "repository": {
     "type": "git",

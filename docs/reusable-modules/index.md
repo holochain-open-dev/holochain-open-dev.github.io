@@ -1,3 +1,3 @@
-# Reusable Modules ||20
+# Reusable Modules ||10
 
 this is some frontend docu
