@@ -1,0 +1,299 @@
+<!DOCTYPE html><html lang="" dir=""><head>
+  
+    
+
+  
+
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Available Modules: DHT Indexing: Holochain Open Dev</title>
+<meta property="og:title" content="Available Modules: DHT Indexing: Holochain Open Dev">
+
+<meta name="generator" content="rocket 0.1">
+<link rel="canonical" href="/reusable-modules/available-modules/dht-indexing/">
+
+
+
+<meta name="description" content="Holochain Open Dev builds open source infrastructure for Holochain Apps">
+<meta property="og:description" content="Holochain Open Dev builds open source infrastructure for Holochain Apps">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.64/dist/themes/light.css">
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.64/dist/shoelace.js"></script>
+
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../assets/favicon-16x16.png">
+<link rel="manifest" href="../../../assets/webmanifest.json">
+<link rel="mask-icon" href="../../../assets/safari-pinned-tab.svg" color="">
+<meta name="msapplication-TileColor" content="">
+<meta name="theme-color" content="">
+
+  
+    <meta property="og:site_name" content="Holochain Open Dev">
+<meta property="og:type" content="website">
+
+<meta property="og:image" content="../../../815ea610.png">
+<meta property="og:url" content="/reusable-modules/available-modules/dht-indexing/">
+
+<meta name="twitter:card" content="summary_large_image">
+
+  
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="">
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&amp;display=optional" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&amp;display=optional" rel="stylesheet">
+
+  
+    <link rel="stylesheet" href="../../../cf2813e1.css">
+<link rel="stylesheet" href="../../../0f4765a3.css">
+<link rel="stylesheet" href="../../../ac2ea3b8.css">
+<link rel="stylesheet" href="../../../b8c01bc2.css">
+
+  
+    <noscript><link rel="stylesheet" href="/_merged_assets/_static/noscript.css"/></noscript>
+
+  
+
+<link rel="preload" href="../../../7a4bcb31.js" as="script" crossorigin="anonymous">
+<link rel="preload" href="../../../b3b2146f.js" as="script" crossorigin="anonymous">
+<link rel="preload" href="../../../dd4fcd54.js" as="script" crossorigin="anonymous">
+</head>
+
+  
+
+  
+  <body layout="layout-sidebar">
+  
+
+    
+      <header id="main-header">
+  <div class="content-area">
+    
+      <button id="mobile-menu-trigger" data-action="trigger-mobile-menu">
+	<span class="sr-only">Show Menu</span>
+	      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon">
+        <path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path>
+      </svg>
+
+</button>
+
+    
+      
+	<a class="logo-link" href="/">
+  <img src="../../../60d3da37.svg" alt="">
+  <span>Holochain Open Dev</span>
+</a>
+
+
+
+    
+      
+  <a href="/reusable-modules/" class="
+          
+           active 
+        ">Reusable Modules</a>
+
+    
+      <launch-dark-switch class="light-dark-switch" label="Toggle darkmode">Toggle darkmode</launch-dark-switch>
+
+
+    
+      
+	<a class="social-link" href="https://github.com/holochain-open-dev/" aria-label="Holochain Open Dev on GitHub" rel="noopener noreferrer" target="_blank">
+		<span class="sr-only">GitHub</span>
+		
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 16" fill="none">
+  <title>GitHub</title>
+  <path fill="currentColor" fill-rule="evenodd" d="M8.18391.249268C3.82241.249268.253906 3.81777.253906 8.17927c0 3.46933 2.279874 6.44313 5.451874 7.53353.3965.0991.49563-.1983.49563-.3965v-1.3878c-2.18075.4956-2.67638-.9912-2.67638-.9912-.3965-.8922-.89212-1.1895-.89212-1.1895-.69388-.4957.09912-.4957.09912-.4957.793.0992 1.1895.793 1.1895.793.69388 1.2887 1.88338.8922 2.27988.6939.09912-.4956.29737-.8921.49562-1.0904-1.78425-.1982-3.5685-.8921-3.5685-3.96496 0-.89212.29738-1.586.793-2.08162-.09912-.19825-.3965-.99125.09913-2.08163 0 0 .69387-.19825 2.18075.793.59475-.19825 1.28862-.29737 1.9825-.29737.69387 0 1.38775.09912 1.98249.29737 1.4869-.99125 2.1808-.793 2.1808-.793.3965 1.09038.1982 1.88338.0991 2.08163.4956.59475.793 1.28862.793 2.08162 0 3.07286-1.8834 3.66766-3.66764 3.86586.29737.3965.59474.8921.59474 1.586v2.1808c0 .1982.0991.4956.5948.3965 3.172-1.0904 5.4518-4.0642 5.4518-7.53353-.0991-4.3615-3.6676-7.930002-8.02909-7.930002z" clip-rule="evenodd"></path>
+</svg>
+
+		
+	</a>
+
+    
+  </div>
+</header>
+
+    
+
+    
+  <div id="content-wrapper">
+    <div class="content-area">
+      
+        <rocket-drawer id="sidebar">
+  <nav slot="content" id="sidebar-nav">
+    
+      <a class="logo-link" href="/">
+  <img src="../../../60d3da37.svg" alt="">
+  <span>Holochain Open Dev</span>
+</a>
+
+
+    
+      <rocket-navigation>
+  <ul><li class="menu-item">
+<a href="/reusable-modules/introduction/">Introduction</a>
+<ul><li class="menu-item">
+<a href="/reusable-modules/introduction/motivation/">Motivation</a>
+
+</li>
+<li class="menu-item">
+<a href="/reusable-modules/introduction/architecture/">Architecture</a>
+
+</li></ul>
+</li>
+<li class="menu-item">
+<a href="/reusable-modules/backend/">Backend</a>
+<ul><li class="menu-item">
+<a href="/reusable-modules/backend/patterns/">Patterns</a>
+
+</li></ul>
+</li>
+<li class="menu-item">
+<a href="/reusable-modules/frontend/">Frontend</a>
+<ul><li class="menu-item">
+<a href="/reusable-modules/frontend/using/">Using a UI Module</a>
+
+</li>
+<li class="menu-item">
+<a href="/reusable-modules/frontend/frameworks/">Integration with Frameworks</a>
+
+</li></ul>
+</li>
+<li class="menu-item active">
+<a href="/reusable-modules/available-modules/">Available Modules</a>
+<ul><li class="menu-item">
+<a href="/reusable-modules/available-modules/zomes/">Zomes</a>
+
+</li>
+<li class="menu-item current">
+<a href="/reusable-modules/available-modules/dht-indexing/">DHT Indexing</a>
+
+
+</li></ul>
+</li></ul>
+  <div class="sidebar-bottom">
+  <hr> <launch-dark-switch class="light-dark-switch" label="Toggle darkmode">Toggle darkmode</launch-dark-switch>
+
+  
+    <a href="https://github.com/holochain-open-dev/">Help and Feedback</a>
+  
+</div>
+
+</rocket-navigation>
+
+    
+  </nav>
+</rocket-drawer>
+
+      
+      
+        <main class="markdown-body">
+  
+    <h1 id="available-modules-dht-indexing"><a class="anchor" href="#available-modules-dht-indexing"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Available Modules: DHT Indexing</h1>
+<p>These are libs that help index entries in the DHT. By indexing, here we mean a way of creating <a href="https://holochain-gym.github.io/developers/intermediate/paths/">paths</a> and links from them that make it easy to search entries by time, ranking, tags, etc.</p>
+<ul>
+<li><a href="https://github.com/holochain-open-dev/holochain-time-index">holochain-time-index</a>: index and search by time range.</li>
+<li><a href="https://github.com/holochain-open-dev/ranking-index">ranking-index</a>: index and search by numerical ranking.</li>
+</ul>
+<p>Please put up a PR if you want yours to be included!</p>
+
+  
+    <div class="content-footer">
+  <p>
+    Caught a mistake or want to contribute to the documentation?
+    <a href="https://github.com/holochain-open-dev/holochain-open-dev.github.io/edit/main/./docs/reusable-modules/available-modules/dht-indexing.md">Edit this page on GitHub!</a>
+  </p>
+</div>
+
+  
+</main>
+
+      
+    </div>
+  </div>
+
+
+    
+      <footer id="main-footer">
+  
+    
+
+  
+    <div id="footer-menu">
+  <div class="content-area">
+    
+      <nav>
+        <h3>Discover</h3>
+        <ul>
+          
+            <li>
+              <a href="https://github.com/modernweb-dev/rocket/issues">Help and Feedback</a>
+            </li>
+          
+        </ul>
+      </nav>
+    
+      <nav>
+        <h3>Follow</h3>
+        <ul>
+          
+            <li>
+              <a href="https://github.com/modernweb-dev/rocket">GitHub</a>
+            </li>
+          
+            <li>
+              <a href="https://twitter.com/modern_web_dev">Twitter</a>
+            </li>
+          
+        </ul>
+      </nav>
+    
+      <nav>
+        <h3>Support</h3>
+        <ul>
+          
+            <li>
+              <a href="https://github.com/modernweb-dev/rocket/blob/master/CONTRIBUTING.md">Contribute</a>
+            </li>
+          
+        </ul>
+      </nav>
+    
+  </div>
+</div>
+
+  
+</footer>
+
+    
+
+    
+  
+
+
+  
+
+<script>
+  window.__rocketServiceWorkerUrl = '/service-worker.js';
+</script>
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+<script type="module" src="../../../7a4bcb31.js"></script>
+<script type="module" src="../../../dd4fcd54.js" inject-service-worker=""></script>
+
+</body></html>
