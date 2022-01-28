@@ -46,7 +46,7 @@ html.dark {
 
 @media screen and (min-width: 1024px) {
   .content-area {
-    max-width: 70vw !important;
+    max-width: 80vw !important;
   }
 
   p {

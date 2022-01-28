@@ -1,4 +1,4 @@
-# Frontend >> Integration with UI frameworks ||20
+# Frontend >> Integration with Frameworks ||20
 
 ```js script
 import "@mdjs/mdjs-story/define";
@@ -18,8 +18,7 @@ import { html } from "@mdjs/mdjs-story";
     <div style="display: flex; flex-direction: column">
       <iframe
         src="https://stackblitz.com/edit/vitejs-vite-tabmaq?embed=1&file=src/App.vue&terminal=dev&view=both&ctl=1"
-        width="1200"
-        height="600"
+        style="width: 100%; height: 600px;"
       ></iframe>
       <br />
       <span>Notice:</span>
@@ -39,8 +38,7 @@ import { html } from "@mdjs/mdjs-story";
     <div style="display: flex; flex-direction: column">
       <iframe
         src="https://stackblitz.com/edit/vitejs-vite-suesw9?ctl=1&embed=1&file=src/App.jsx&terminal=dev&view=both"
-        width="1200"
-        height="600"
+        style="width: 100%; height: 600px;"
       ></iframe>
       <br />
       <span>Notice:</span>
@@ -69,18 +67,15 @@ import { html } from "@mdjs/mdjs-story";
   <sl-tab-panel name="angular">
     <div style="display: flex; flex-direction: column">
       <iframe
-        src="https://stackblitz.com/edit/angular-ivy-6weh8u?ctl=1&embed=1&file=src/app/app.component.ts&hideNavigation=1&view=editor"
-        width="1200"
-        height="600"
+        src="https://codesandbox.io/embed/holochain-open-dev-profiles-in-angular-ib9n0?fontsize=14&hidenavigation=1&theme=dark&view=split&module=/src/app/app.component.ts,/src/app/app.component.html"
+        style="width: 100%; height:600px; border:0; border-radius: 4px; overflow:hidden;"
+        title="@holochain-open-dev/profiles in Angular"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
       ></iframe>
-
       <br />
       <span>Notice:</span>
       <ul>
-        <li>
-          The preview doesn't work at the moment because of a Stackblitz build
-          issue. This exact code should work fine in your local machine.
-        </li>
         <li>
           You need to import the "CUSTOM_ELEMENTS_SCHEMA" in your "NgModule".
         </li>
@@ -97,15 +92,13 @@ import { html } from "@mdjs/mdjs-story";
   <sl-tab-panel name="svelte">
     <iframe
       src="https://stackblitz.com/edit/vitejs-vite-kjr8dw?embed=1&file=src/App.svelte&terminal=dev&view=both&ctl=1"
-      width="1200"
-      height="600"
+      style="width: 100%; height: 600px;"
     ></iframe>
   </sl-tab-panel>
   <sl-tab-panel name="lit">
     <iframe
       src="https://stackblitz.com/edit/vitejs-vite-pqy9ar?ctl=1&embed=1&file=src/my-element.js&view=both&terminal=dev"
-      width="1200"
-      height="600"
+      style="width: 100%; height: 600px;"
     ></iframe>
   </sl-tab-panel>
 </sl-tab-group>

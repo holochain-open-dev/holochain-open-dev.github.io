@@ -1,6 +1,6 @@
 # Introduction >> Motivation ||10
 
-We love Holochain, its community and the way the technology enables new patterns of organization.
+We love Holochain, its community and the way peer-to-peer technologies enable new patterns of social organization.
 
 A lot of folks in the Holochain community have had a shared vision for some time. It goes a bit like this:
 
@@ -16,7 +16,9 @@ _Oh oh! We could even think of collections of downloadable UI widgets that can r
 
 ---
 
-We think one of the first steps we can take towards this vision is starting to develop a set of generic and reusable building-blocks that can be included in any Holochain application. Each module consists of at least a backend zome (or similar), and a UI package.
+> Projects that share at least part of this vision include [Neighborhoods](https://neighbourhoods.network/), [hREA](https://github.com/holo-rea/holo-rea), [Generative Objects](https://www.youtube.com/watch?v=6ZiUekVAg3A), [Ceptr](https://www.youtube.com/watch?v=3Db-8lD1lNA&t=2392s), and many others (hi all to the amazing folks from the Holochain community :) ).
+
+We think one of the first steps we can take towards this vision is starting to develop a set of generic and reusable building-blocks that can be included in any Holochain application. This means trying to assume as little as possible about the consuming application, and have a carefully designed distribution of responsabilities between the modules so that they can be combined with each other as needed in differnt contexts and use cases. Each module consists of at least a backend zome (or similar), and a UI package.
 
 Converging towards that vision, there is a very pragmatic reason to follow this pattern of development: it is hard to develop software! If we can reuse full modules that have been developed already by others in the Holochain community, we can speed up the process of creating a new hApp enourmously, building on top of the shoulders of giants.
 
