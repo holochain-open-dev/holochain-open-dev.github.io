@@ -204,9 +204,69 @@
         <main class="markdown-body">
   
     <h1 id="backend-patterns"><a class="anchor" href="#backend-patterns"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Backend: Patterns</h1>
+<p>If you don't want to include any of the frontend code each of the module exposes, you can just include its backend and develop your own custom UI.</p>
 <h2 id="zomes"><a class="anchor" href="#zomes"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Zomes</h2>
+<p>The majority of the modules export a zome for you to include in one of your DNAs. This is because if we are to develop frontend modules that can call directly the zome functions from the backend, we need to define and assume which zome calls are available, and its input and output structures.</p>
+<p>You can explore which <a href="https://github.com/holochain-open-dev/?q=topic%3Azome&amp;type=all&amp;language=&amp;sort=">zomes are available right now in holochain-open-dev</a>.</p>
+<blockquote>
+<p>Keep in mind that many of these zomes are still in early development.</p>
+</blockquote>
 <h2 id="mixins"><a class="anchor" href="#mixins"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Mixins</h2>
+<p>"Mixins" are a way to define a "configurable zome".</p>
+<p>Imagine a generic gaming zome, that implements the whole functionality associated with specifically turn-based games (chess, go, etc.). Validation in Holochain is specific to each zome, which means that the zome itself should validate any entries that same zome creates. But, this means that we have to override the validation function for that zome, which is not possible to do elegantly if we just export a normal zome. Also, we may want to customize the behavior of normal zome functions.</p>
+<p>The "mixin" pattern aims to be a solution to this problem. It consists of exporting a declarative macro, that when called defines all the necessary zome functions in your zome. This way, we can also assume which shape the zome functions will have, and develop accompanying UI elements that are able to communicate with any zome that has that mixin defined.</p>
+<ul>
+<li>Using a mixin:</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">struct</span> TicTacToe<span class="token punctuation">;</span>
+
+<span class="token keyword">impl</span> TurnBasedGame <span class="token keyword">for</span> TicTacToe <span class="token punctuation">{</span>
+  <span class="token keyword">fn</span> <span class="token function">custom_validation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-&gt;</span> ExternResult<span class="token operator">&lt;</span>ValidateCallbackResult<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">mixin_turn_based_game!</span><span class="token punctuation">(</span>TicTacToe<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre>
+<ul>
+<li>Defining a mixin:</li>
+</ul>
+<pre class="language-rust"><code class="language-rust"><span class="token keyword">pub</span> <span class="token keyword">trait</span> TurnBasedGame <span class="token punctuation">{</span>
+    <span class="token keyword">fn</span> <span class="token function">custom_validation</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-&gt;</span> ExternResult<span class="token operator">&lt;</span>ValidateCallbackResult<span class="token operator">&gt;</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token attribute attr-name">#[macro_export]</span>
+<span class="token macro-rules function">macro_rules!</span> mixin_turn_based_game <span class="token punctuation">{</span>
+    <span class="token punctuation">(</span> $turn_based_game<span class="token punctuation">:</span>ty <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token attribute attr-name">#[hdk_extern]</span>
+        <span class="token keyword">fn</span> <span class="token function">make_move</span><span class="token punctuation">(</span>
+            input<span class="token punctuation">:</span> $<span class="token keyword">crate</span><span class="token punctuation">::</span>MakeMoveInput<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">-&gt;</span> ExternResult<span class="token operator">&lt;</span>hdk<span class="token punctuation">::</span>prelude<span class="token punctuation">::</span>holo_hash<span class="token punctuation">::</span>HeaderHashB64<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+          <span class="token punctuation">...</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token attribute attr-name">#[hdk_extern]</span>
+        <span class="token keyword">fn</span> <span class="token function">validate_create_entry_game_entry</span><span class="token punctuation">(</span>
+            validate_data<span class="token punctuation">:</span> ValidateData<span class="token punctuation">,</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">-&gt;</span> ExternResult<span class="token operator">&lt;</span>ValidateCallbackResult<span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Called the custom behavior defined in the consuming zome</span>
+            $turn_based_game<span class="token punctuation">::</span><span class="token function">custom_validation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Other behavior</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Examples of mixins:</p>
+<ul>
+<li><a href="https://github.com/eyss/elo/blob/main/mixin/src/mixin.rs">@eyss/elo</a></li>
+<li><a href="https://github.com/eyss/turn-based-game/blob/main/mixin/src/mixin.rs">@eyss/turn-based-game</a></li>
+</ul>
 <h2 id="libs"><a class="anchor" href="#libs"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Libs</h2>
+<p>There are a lot of reusable patterns that shouldn't actually define any zome function by themselves, by rather define functions that zomes can import if they need them.</p>
+<p>These libs don't have any accompanying frontend module, since they don't define the shape or input/output structures that the elements would need to interact with the backend.</p>
+<p>You can explore which <a href="https://github.com/holochain-open-dev/?q=topic%25lib&amp;type=all&amp;language=&amp;sort=">libs are available right now in holochain-open-dev</a>.</p>
 
   
     <div class="content-footer">

@@ -194,7 +194,7 @@
         <main class="markdown-body">
   
     <h1 id="introduction-motivation"><a class="anchor" href="#introduction-motivation"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Introduction: Motivation</h1>
-<p>We love Holochain, its community and the way the technology enables new patterns of organization.</p>
+<p>We love Holochain, its community and the way peer-to-peer technologies enable new patterns of social organization.</p>
 <p>A lot of folks in the Holochain community have had a shared vision for some time. It goes a bit like this:</p>
 <hr>
 <p><em>Imagine a world in which data is not stored in isolated siloes, but rather in decentralized networks, that each agent joins based in the context they are in and participates fully in the network. This means that, for example, the calendar events a particular agent cares about are actually spread not only in one source of data, but distributed in the many different networks they are participating in.</em></p>
@@ -202,7 +202,10 @@
 <p><em>For this to work, we need to develop smart and reusable building-blocks that can adapt to those many (many!) different contexts.</em></p>
 <p><em>Oh oh! We could even think of collections of downloadable UI widgets that can read the <strong>same data</strong> and render it differently. Maybe each widget has a different theme, or they put emphasis on different perspectives (personal, relationship with others, relationship to the whole). What else could we do? So exciting!</em></p>
 <hr>
-<p>We think one of the first steps we can take towards this vision is starting to develop a set of generic and reusable building-blocks that can be included in any Holochain application. Each module consists of at least a backend zome (or similar), and a UI package.</p>
+<blockquote>
+<p>Projects that share at least part of this vision include <a href="https://neighbourhoods.network/">Neighborhoods</a>, <a href="https://github.com/holo-rea/holo-rea">hREA</a>, <a href="https://www.youtube.com/watch?v=6ZiUekVAg3A">Generative Objects</a>, <a href="https://www.youtube.com/watch?v=3Db-8lD1lNA&amp;t=2392s">Ceptr</a>, and many others (hi all to the amazing folks from the Holochain community :) ).</p>
+</blockquote>
+<p>We think one of the first steps we can take towards this vision is starting to develop a set of generic and reusable building-blocks that can be included in any Holochain application. This means trying to assume as little as possible about the consuming application, and have a carefully designed distribution of responsabilities between the modules so that they can be combined with each other as needed in differnt contexts and use cases. Each module consists of at least a backend zome (or similar), and a UI package.</p>
 <p>Converging towards that vision, there is a very pragmatic reason to follow this pattern of development: it is hard to develop software! If we can reuse full modules that have been developed already by others in the Holochain community, we can speed up the process of creating a new hApp enourmously, building on top of the shoulders of giants.</p>
 <p>With the emergence of <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Custom Elements</a> as a new standard for developing components that work everywhere, we see an opportunity to start developing web-based frontend modules that work anywhere. These elements can even be downloaded at runtime, instantiated and rendered in the webpage directly, which enables dynamic UIs that fetch the widgets depending on the preferences of the users themselves, rather than having to go back to the SPA code and build it again.</p>
 
