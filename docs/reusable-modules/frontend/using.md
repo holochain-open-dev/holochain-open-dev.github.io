@@ -56,7 +56,7 @@ The modules are really careful to be application agnostic: they don't define any
 
 Most elements are built using [lit](https://lit.dev) and follow the [open-wc pattern](https://open-wc.org). But any other technology that exports Custom Elements will work just fine.
 
-See how to integrate the elements in each frontend framework [here](/reusable-modules/frontend/frameworks/).
+See how to integrate the elements in each frontend framework [here](./frameworks.md).
 
 ### Scoped Elements
 
@@ -115,7 +115,7 @@ And then in your html:
 </context-provider>
 ```
 
-> Here, every framework has a different style of passing a property down to the component, but they all will work fine. See [Integration with Frameworks](/reusable-modules/frontend/frameworks/) for examples of integrations in each of the frontend frameworks.
+> Here, every framework has a different style of passing a property down to the component, but they all will work fine. See [Integration with Frameworks](./frameworks.md) for examples of integrations in each of the frontend frameworks.
 
 As you may have guessed, context providers can be nested inside each other, to provide multiple contexts to elements that could need them:
 
