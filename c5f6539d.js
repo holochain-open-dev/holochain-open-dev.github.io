@@ -28,8 +28,11 @@ import"./0d790cd0.js";import{$ as e}from"./b3b2146f.js";const t=()=>e`<sl-tab-gr
   <sl-tab-panel name="react">
     <div style="display: flex; flex-direction: column">
       <iframe
-        src="https://stackblitz.com/edit/vitejs-vite-suesw9?ctl=1&embed=1&file=src/App.jsx&terminal=dev&view=both"
-        style="width: 100%; height: 600px;"
+        src="https://codesandbox.io/embed/happy-cray-5i9pf?fontsize=14&hidenavigation=1&theme=dark"
+        style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
+        title="happy-cray-5i9pf"
+        allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+        sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
       ></iframe>
       <br />
       <span>Notice:</span>
