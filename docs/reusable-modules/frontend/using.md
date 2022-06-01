@@ -95,24 +95,24 @@ You can read more about the reasoning behind scoped elements [here](https://open
 
 As our elements are not just presentational, but hey also make calls to the backend by themselves via the store, we need a way to define and configure the store outside the elements, and then pass it down to the elements so that they can use it. Inspired by other frontend frameworks (React or Svelte), we use the context pattern as a way to inject the stores to the elements themselves.
 
-In summary, the context pattern consists of defining a `<context-provider>` element that contains the store object, and that must be wrapping all the elements that need the store. When each element starts, it fires an event which gets captured by the closest `<context-provider>`, and it injects the store to the requesting element.
+In summary, the context pattern consists of defining a `<*-context>` (e.g. `<profiles-context>`) element that contains the store object, and that must be wrapping all the elements that need the store. When each element starts, it fires an event which gets captured by the closest `<*-context>` element, and it injects the store to the requesting element.
 
-Each module exports a context object, **that must be passed as the context** property in the `<context-provider>` element. This is the context that the elements exported by the modules are requesting,
+Each module exports its own `<*-context>` element, which knows how to provide the store to the elements from that same module. You just need to set its `store` property to the store object you have initialized,
 
-To define the `<context-provider>` element you can just import it:
+To define the `<*-context>` element you can just import it:
 
 ```js
 // This can be placed in the index.js, at the top level of your web-app.
-import "@holochain-open-dev/context/context-provider";
+import "@holochain-open-dev/profiles/profiles-context";
 ```
 
 And then in your html:
 
 ```html
-<context-provider .context="${profilesStoreContext}" .store="${profilesStore}">
+<profiles-context .store="${profilesStore}">
   <list-profiles></list-profiles>
   <search-agent></search-agent>
-</context-provider>
+</profiles-context>
 ```
 
 > Here, every framework has a different style of passing a property down to the component, but they all will work fine. See [Integration with Frameworks](./frameworks.md) for examples of integrations in each of the frontend frameworks.
@@ -120,15 +120,15 @@ And then in your html:
 As you may have guessed, context providers can be nested inside each other, to provide multiple contexts to elements that could need them:
 
 ```html
-<context-provider .context="${profilesStoreContext}" .store="${profilesStore}">
-  <context-provider .context="${someOtherContext}" .store="${someOtherStore}">
+<profiles-context .store="${profilesStore}">
+  <invitations-context .store="${someOtherStore}">
     <list-profiles></list-profiles>
     <some-other-element></some-other-element>
-  </context-provider>
-</context-provider>
+  </invitations-context>
+</profiles-context>
 ```
 
-Go [here](https://www.npmjs.com/package/@holochain-open-dev/context) to read more about the library we use. This library is just a port of [@lit-labs/context](), that's being finished and will be published soon. When that happens, we'll most likely switch to that stable and widely used library.
+Go [here](https://www.npmjs.com/package/@lit-labs/context) to read more about the library we use. 
 
 **If you only need one component**, you don't have to use the context pattern at all. You can just pass the store as a property to that component directly:
 
