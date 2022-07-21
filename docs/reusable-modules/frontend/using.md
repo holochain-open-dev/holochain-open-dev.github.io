@@ -41,9 +41,9 @@ const config = {
 
 const store = new ProfilesStore(cellClient, config);
 
-store.knownProfiles.subscribe((allProfiles) => console.log(allProfiles));
+const allProfilesReadable = await store.fetchAllProfiles();
 
-await store.fetchAllProfiles();
+allProfilesReadable.subscribe((allProfiles) => console.log(allProfiles));
 ```
 
 The store constructor usually accepts a [cellClient object](https://www.npmjs.com/package/@holochain-open-dev/cell-client) that allows for usage of the module in both native Holochain and Holo contexts. It can also accept module wide configuration, that will be read by any of the components of the module and may affect their behaviour.
