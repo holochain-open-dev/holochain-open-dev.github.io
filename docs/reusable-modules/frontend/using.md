@@ -1,6 +1,6 @@
 # Frontend >> Using a UI Module ||10
 
-Each frontend module is packaged as an NPM package and has (at least) these exports: types, services, stores, elements and its context.
+Each frontend module is packaged as an NPM package and has (at least) these exports: some types, a client, a store, some elements and its context.
 
 All of these exports are designed so that you can import and use whatever makes more sense for your use case. Pick carefully the layer at which you import the objects.
 
@@ -13,12 +13,12 @@ These are typescript types that replicate the rust structs and types used by the
 Its usage is very straightforward:
 
 ```ts
-import { AgentProfile, SearchAgentInput } from "@holochain-open-dev/profiles";
+import { Profile, SearchAgentInput } from "@holochain-open-dev/profiles";
 ```
 
-## Services
+## Clients
 
-A service is a typescript class that wraps the `AppWebsocket` from `@holochain/client` and exposes the function calls that are available in the zome.
+A client is a typescript class that wraps the `AppAgentWebsocket` from `@holochain/client` and exposes the function calls that are available in the zome.
 
 ## Stores
 
@@ -33,20 +33,14 @@ This is a sample of using the `ProfilesStore` without any UI framework:
 ```ts
 import { ProfilesStore } from "@holochain-open-dev/profiles";
 
-const cellClient = createClient();
+const appAgentClient = createClient();
 
-const config = {
-  zomeName: 'custom_profiles'
-};
+const store = new ProfilesStore(appAgentClient, config);
 
-const store = new ProfilesStore(cellClient, config);
-
-const allProfilesReadable = await store.fetchAllProfiles();
-
-allProfilesReadable.subscribe((allProfiles) => console.log(allProfiles));
+store.allProfiles.subscribe((allProfiles) => console.log(allProfiles));
 ```
 
-The store constructor usually accepts a [cellClient object](https://www.npmjs.com/package/@holochain-open-dev/cell-client) that allows for usage of the module in both native Holochain and Holo contexts. It can also accept module wide configuration, that will be read by any of the components of the module and may affect their behaviour.
+The store constructor usually accepts a [AppAgentClient object](https://www.npmjs.com/package/@holochain/client) that allows for usage of the module in both native Holochain and Holo contexts. It can also accept module wide configuration, that will be read by any of the components of the module and may affect their behaviour.
 
 ## Elements
 
@@ -58,38 +52,12 @@ Most elements are built using [lit](https://lit.dev) and follow the [open-wc pat
 
 See how to integrate the elements in each frontend framework [here](./frameworks.md).
 
-### Scoped Elements
-
-The only problem with Custom Elements as of now is that they are defined in a global `CustomElementsRegistry`, which means that if two different modules define a `<custom-input></custom-input>` element, their names will clash and this will break the whole application.
-
-To avoid this, the frontend modules don't automatically define the elements just by importing them. Rather, you can import the elements in two ways, depending on what you need:
-
-- If you are building a full blown SPA, you can safely define the element globally like this:
+To include elements into your app you import them like this:
 
 ```js
-// This does define the ListProfiles element in the global CustomElementsRegsitry
-import "@holochain-open-dev/profiles/list-profiles";
+import "@holochain-open-dev/profiles/elements/profile-prompt.js";
+import "@holochain-open-dev/profiles/elements/list-profiles.js";
 ```
-
-- If you are developing a reusable module yourself and don't want to define the element globally, you can use the scoped-elements pattern:
-
-```js
-// This doesn't define the ListProfiles element in the global CustomElementsRegsitry
-import { ListProfiles } from "@holochain-open-dev/profiles";
-
-// and then use it in a scoped element like this:
-import { ScopedElementsMixin } from "@open-wc/scoped-elements";
-import { LitElement } from "lit";
-class ProfilesTest extends ScopedElementsMixin(LitElement) {
-  static get scopedElements() {
-    return {
-      "list-profiles": ListProfiles,
-    };
-  }
-}
-```
-
-You can read more about the reasoning behind scoped elements [here](https://open-wc.org/docs/development/scoped-elements/#development-scoped-elements).
 
 ## Context
 
@@ -103,13 +71,13 @@ To define the `<*-context>` element you can just import it:
 
 ```js
 // This can be placed in the index.js, at the top level of your web-app.
-import "@holochain-open-dev/profiles/profiles-context";
+import "@holochain-open-dev/profiles/elements/profiles-context.js";
 ```
 
 And then in your html:
 
 ```html
-<profiles-context .store="${profilesStore}">
+<profiles-context .store=${profilesStore}>
   <list-profiles></list-profiles>
   <search-agent></search-agent>
 </profiles-context>
@@ -120,8 +88,8 @@ And then in your html:
 As you may have guessed, context providers can be nested inside each other, to provide multiple contexts to elements that could need them:
 
 ```html
-<profiles-context .store="${profilesStore}">
-  <invitations-context .store="${someOtherStore}">
+<profiles-context .store=${profilesStore}>
+  <invitations-context .store=${someOtherStore}>
     <list-profiles></list-profiles>
     <some-other-element></some-other-element>
   </invitations-context>
@@ -133,5 +101,5 @@ Go [here](https://www.npmjs.com/package/@lit-labs/context) to read more about th
 **If you only need one component**, you don't have to use the context pattern at all. You can just pass the store as a property to that component directly:
 
 ```html
-<list-profiles .store="${profilesStore}"></list-profiles>
+<list-profiles .store=${profilesStore}></list-profiles>
 ```
