@@ -35,7 +35,7 @@
     <meta property="og:site_name" content="Holochain Open Dev">
 <meta property="og:type" content="website">
 
-<meta property="og:image" content="../../../61483615.png">
+<meta property="og:image" content="../../../0e02544a.png">
 <meta property="og:url" content="/reusable-modules/frontend/using/">
 
 <meta name="twitter:card" content="summary_large_image">
@@ -161,7 +161,7 @@
     <a href="#types" class="anchor">Types</a>
   </li>
   <li class="menu-item anchor">
-    <a href="#services" class="anchor">Services</a>
+    <a href="#clients" class="anchor">Clients</a>
   </li>
   <li class="menu-item anchor">
     <a href="#stores" class="anchor">Stores</a>
@@ -210,7 +210,7 @@
         <main class="markdown-body">
   
     <h1 id="frontend-using-a-ui-module"><a class="anchor" href="#frontend-using-a-ui-module"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Frontend: Using a UI Module</h1>
-<p>Each frontend module is packaged as an NPM package and has (at least) these exports: types, services, stores, elements and its context.</p>
+<p>Each frontend module is packaged as an NPM package and has (at least) these exports: some types, a client, a store, some elements and its context.</p>
 <p>All of these exports are designed so that you can import and use whatever makes more sense for your use case. Pick carefully the layer at which you import the objects.</p>
 <blockquote>
 <p>All the examples here use the <code>@holochain-open-dev/profiles</code> module, but any other module that follows this pattern will basically have the same kind of exports available for you to use.</p>
@@ -218,10 +218,10 @@
 <h2 id="types"><a class="anchor" href="#types"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Types</h2>
 <p>These are typescript types that replicate the rust structs and types used by the zome at the backend layer.</p>
 <p>Its usage is very straightforward:</p>
-<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">AgentProfile</span><span class="token punctuation">,</span> <span class="token maybe-class-name">SearchAgentInput</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@holochain-open-dev/profiles"</span><span class="token punctuation">;</span>
+<pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">Profile</span><span class="token punctuation">,</span> <span class="token maybe-class-name">SearchAgentInput</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@holochain-open-dev/profiles"</span><span class="token punctuation">;</span>
 </code></pre>
-<h2 id="services"><a class="anchor" href="#services"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Services</h2>
-<p>A service is a typescript class that wraps the <code>AppWebsocket</code> from <code>@holochain/client</code> and exposes the function calls that are available in the zome.</p>
+<h2 id="clients"><a class="anchor" href="#clients"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Clients</h2>
+<p>A client is a typescript class that wraps the <code>AppAgentWebsocket</code> from <code>@holochain/client</code> and exposes the function calls that are available in the zome.</p>
 <h2 id="stores"><a class="anchor" href="#stores"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Stores</h2>
 <p>A store is a typescript class that maintains the shared state for the elements exported by this module. This shared state is crucial in order to have cool optimizations, like skipping zome calls because we already have the necessary information, or updating all the elements at once reacting to a signal that came from the zome.</p>
 <p>After exploring different state management alternatives, like <code>redux</code> or <code>mobx</code>, we settled on svelte's stores as the base engine to build the stores.</p>
@@ -229,61 +229,32 @@
 <p>This is a sample of using the <code>ProfilesStore</code> without any UI framework:</p>
 <pre class="language-ts"><code class="language-ts"><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">ProfilesStore</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@holochain-open-dev/profiles"</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> cellClient <span class="token operator">=</span> <span class="token function">createClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> appAgentClient <span class="token operator">=</span> <span class="token function">createClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
-  zomeName<span class="token punctuation">:</span> <span class="token string">'custom_profiles'</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ProfilesStore</span><span class="token punctuation">(</span>appAgentClient<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-<span class="token keyword">const</span> store <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ProfilesStore</span><span class="token punctuation">(</span>cellClient<span class="token punctuation">,</span> config<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">const</span> allProfilesReadable <span class="token operator">=</span> <span class="token keyword">await</span> store<span class="token punctuation">.</span><span class="token method function property-access">fetchAllProfiles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-allProfilesReadable<span class="token punctuation">.</span><span class="token method function property-access">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">allProfiles</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>allProfiles<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+store<span class="token punctuation">.</span><span class="token property-access">allProfiles</span><span class="token punctuation">.</span><span class="token method function property-access">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">allProfiles</span><span class="token punctuation">)</span> <span class="token arrow operator">=&gt;</span> <span class="token console class-name">console</span><span class="token punctuation">.</span><span class="token method function property-access">log</span><span class="token punctuation">(</span>allProfiles<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<p>The store constructor usually accepts a <a href="https://www.npmjs.com/package/@holochain-open-dev/cell-client">cellClient object</a> that allows for usage of the module in both native Holochain and Holo contexts. It can also accept module wide configuration, that will be read by any of the components of the module and may affect their behaviour.</p>
+<p>The store constructor usually accepts a <a href="https://www.npmjs.com/package/@holochain/client">AppAgentClient object</a> that allows for usage of the module in both native Holochain and Holo contexts. It can also accept module wide configuration, that will be read by any of the components of the module and may affect their behaviour.</p>
 <h2 id="elements"><a class="anchor" href="#elements"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Elements</h2>
 <p>All the elements exported by the frontend modules are <a href="https://developers.google.com/web/fundamentals/web-components/customelements">Custom Elements</a>, which means that they can be used in any UI framework because the browser itself can handle them. This means that you can use your favourite framework or web-based tooling, and still import and use the elements from the modules.</p>
 <p>The modules are really careful to be application agnostic: they don't define any routes, or global CSS, or use any globally defined objects. This means that you'll be able to import them without interfering with the rest of your application.</p>
 <p>Most elements are built using <a href="https://lit.dev">lit</a> and follow the <a href="https://open-wc.org">open-wc pattern</a>. But any other technology that exports Custom Elements will work just fine.</p>
 <p>See how to integrate the elements in each frontend framework <a href="../frameworks/">here</a>.</p>
-<h3 id="scoped-elements"><a class="anchor" href="#scoped-elements"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Scoped Elements</h3>
-<p>The only problem with Custom Elements as of now is that they are defined in a global <code>CustomElementsRegistry</code>, which means that if two different modules define a <code>&lt;custom-input&gt;&lt;/custom-input&gt;</code> element, their names will clash and this will break the whole application.</p>
-<p>To avoid this, the frontend modules don't automatically define the elements just by importing them. Rather, you can import the elements in two ways, depending on what you need:</p>
-<ul>
-<li>If you are building a full blown SPA, you can safely define the element globally like this:</li>
-</ul>
-<pre class="language-js"><code class="language-js"><span class="token comment">// This does define the ListProfiles element in the global CustomElementsRegsitry</span>
-<span class="token keyword module">import</span> <span class="token string">"@holochain-open-dev/profiles/list-profiles"</span><span class="token punctuation">;</span>
+<p>To include elements into your app you import them like this:</p>
+<pre class="language-js"><code class="language-js"><span class="token keyword module">import</span> <span class="token string">"@holochain-open-dev/profiles/elements/profile-prompt.js"</span><span class="token punctuation">;</span>
+<span class="token keyword module">import</span> <span class="token string">"@holochain-open-dev/profiles/elements/list-profiles.js"</span><span class="token punctuation">;</span>
 </code></pre>
-<ul>
-<li>If you are developing a reusable module yourself and don't want to define the element globally, you can use the scoped-elements pattern:</li>
-</ul>
-<pre class="language-js"><code class="language-js"><span class="token comment">// This doesn't define the ListProfiles element in the global CustomElementsRegsitry</span>
-<span class="token keyword module">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">ListProfiles</span> <span class="token punctuation">}</span> <span class="token keyword module">from</span> <span class="token string">"@holochain-open-dev/profiles"</span><span class="token punctuation">;</span>
-
-<span class="token comment">// and then use it in a scoped element like this:</span>
-<span class="token keyword module">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">ScopedElementsMixin</span> <span class="token punctuation">}</span> <span class="token keyword module">from</span> <span class="token string">"@open-wc/scoped-elements"</span><span class="token punctuation">;</span>
-<span class="token keyword module">import</span> <span class="token punctuation">{</span> <span class="token maybe-class-name">LitElement</span> <span class="token punctuation">}</span> <span class="token keyword module">from</span> <span class="token string">"lit"</span><span class="token punctuation">;</span>
-<span class="token keyword">class</span> <span class="token class-name">ProfilesTest</span> <span class="token keyword">extends</span> <span class="token class-name">ScopedElementsMixin</span><span class="token punctuation">(</span><span class="token maybe-class-name">LitElement</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">static</span> <span class="token keyword">get</span> <span class="token function">scopedElements</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">return</span> <span class="token punctuation">{</span>
-      <span class="token string">"list-profiles"</span><span class="token punctuation">:</span> <span class="token maybe-class-name">ListProfiles</span><span class="token punctuation">,</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-</code></pre>
-<p>You can read more about the reasoning behind scoped elements <a href="https://open-wc.org/docs/development/scoped-elements/#development-scoped-elements">here</a>.</p>
 <h2 id="context"><a class="anchor" href="#context"><svg class="octicon octicon-link" viewBox="0 0 16 16" aria-hidden="true" width="16" height="16"><path fill-rule="evenodd" d="M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z"></path></svg></a>Context</h2>
 <p>As our elements are not just presentational, but hey also make calls to the backend by themselves via the store, we need a way to define and configure the store outside the elements, and then pass it down to the elements so that they can use it. Inspired by other frontend frameworks (React or Svelte), we use the context pattern as a way to inject the stores to the elements themselves.</p>
 <p>In summary, the context pattern consists of defining a <code>&lt;*-context&gt;</code> (e.g. <code>&lt;profiles-context&gt;</code>) element that contains the store object, and that must be wrapping all the elements that need the store. When each element starts, it fires an event which gets captured by the closest <code>&lt;*-context&gt;</code> element, and it injects the store to the requesting element.</p>
 <p>Each module exports its own <code>&lt;*-context&gt;</code> element, which knows how to provide the store to the elements from that same module. You just need to set its <code>store</code> property to the store object you have initialized,</p>
 <p>To define the <code>&lt;*-context&gt;</code> element you can just import it:</p>
 <pre class="language-js"><code class="language-js"><span class="token comment">// This can be placed in the index.js, at the top level of your web-app.</span>
-<span class="token keyword module">import</span> <span class="token string">"@holochain-open-dev/profiles/profiles-context"</span><span class="token punctuation">;</span>
+<span class="token keyword module">import</span> <span class="token string">"@holochain-open-dev/profiles/elements/profiles-context.js"</span><span class="token punctuation">;</span>
 </code></pre>
 <p>And then in your html:</p>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profiles-context</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${profilesStore}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profiles-context</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span>${profilesStore}</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list-profiles</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list-profiles</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>search-agent</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>search-agent</span><span class="token punctuation">&gt;</span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>profiles-context</span><span class="token punctuation">&gt;</span></span>
@@ -292,8 +263,8 @@ allProfilesReadable<span class="token punctuation">.</span><span class="token me
 <p>Here, every framework has a different style of passing a property down to the component, but they all will work fine. See <a href="../frameworks/">Integration with Frameworks</a> for examples of integrations in each of the frontend frameworks.</p>
 </blockquote>
 <p>As you may have guessed, context providers can be nested inside each other, to provide multiple contexts to elements that could need them:</p>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profiles-context</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${profilesStore}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>invitations-context</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${someOtherStore}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>profiles-context</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span>${profilesStore}</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>invitations-context</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span>${someOtherStore}</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list-profiles</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list-profiles</span><span class="token punctuation">&gt;</span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>some-other-element</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>some-other-element</span><span class="token punctuation">&gt;</span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>invitations-context</span><span class="token punctuation">&gt;</span></span>
@@ -301,7 +272,7 @@ allProfilesReadable<span class="token punctuation">.</span><span class="token me
 </code></pre>
 <p>Go <a href="https://www.npmjs.com/package/@lit-labs/context">here</a> to read more about the library we use.</p>
 <p><strong>If you only need one component</strong>, you don't have to use the context pattern at all. You can just pass the store as a property to that component directly:</p>
-<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list-profiles</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>${profilesStore}<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list-profiles</span><span class="token punctuation">&gt;</span></span>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>list-profiles</span> <span class="token attr-name">.store</span><span class="token attr-value"><span class="token punctuation">=</span>${profilesStore}</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>list-profiles</span><span class="token punctuation">&gt;</span></span>
 </code></pre>
 
   
